@@ -9,7 +9,6 @@ enableVideo=true #enable or disable video by default
 
 #input and output
 #if you don't want to use easyeffects run this command {ffmpeg -sources pulse} to find which input and output you can use
-#TODO make it more "automatic"
 input=easyeffects_source #input device
 enableInput=fales #enable or disable output by default
 output=easyeffects_sink.monitor #output device
