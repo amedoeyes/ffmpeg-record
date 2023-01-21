@@ -20,20 +20,25 @@ location=Videos/screenrecord #default save location
 name=$(date +%F-%H-%M-%S) #default name
 format=mp4 #default format
 
+codec="libx264 -pix_fmt yuv420p" #default codec
 ##
 
 ##options
-while getopts r:f:vion:l:f: flag
+while getopts r:f:vViIoOn:l:f:c: flag
 do
     case "${flag}" in
 	r) resolution=${OPTARG};;
 	s) fps=${OPTARG};;
 	v) enableVideo=true;;
+	V) enableVideo=false;;
 	i) enableInput=true;;
+	I) enableInput=false;;
 	o) enableOutput=true;;
+	O) enableOutput=false;;
 	n) name=${OPTARG};;
 	l) location=${OPTARG};;
 	f) format=${OPTARG};;
+	c) codec=${OPTARG};;
     esac
 done
 
@@ -58,4 +63,4 @@ then
 fi
 
 #execute
-ffmpeg $videoInput $framerate $pulseInput $pulseOutput $mix $location/$name.$format
+ffmpeg $videoInput $framerate $pulseInput $pulseOutput $mix -c:v $codec $location/$name.$format
